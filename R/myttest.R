@@ -1,6 +1,18 @@
 
-# This is our constructor
-myttest <- function(x,y,alpha, paired)
+#' Title
+#'
+#' @param x a vector
+#' @param y a vector
+#' @param alpha the parameter used in the t.test
+#' @param paired whether the input data are paired or not
+#' @importFrom stats t.test
+#'
+#' @return an object of type Rttest
+#' @export
+#'
+#' @examples
+#' \dontrun{myttest(x,y, 0.05, True)}
+myttest <- function(x,y,alpha, paired) # This is our constructor
 {
   # handeling unequal length of x and y if needed:
   if (length(x) > length(y))
@@ -49,14 +61,13 @@ myttest <- function(x,y,alpha, paired)
     summary_stats = t,
     #data = data.frame(x,y),
     data = list(x,y),
-
-    test = t,
-    alpha = alpha,
-    confidence_interval = t$conf.int,
-    p_value = t$p.value
+    #test = t,
+    #alpha = alpha,
+    #confidence_interval = t$conf.int,
+    #p_value = t$p.value
   )
 
   class(object) <- "Rttest" #attributing the class Rttest to the object
 
-  object #returning the object
+  invisible(object) #returning the object in an invisible way
 }
